@@ -1,5 +1,6 @@
 /*
  * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ *          Ethan Grassia  /  Section 001
  *
  * This HashingProblems object contains three methods / problems that you must
  * complete utilize the HashMap object within the Java's Collection Framework Library.
@@ -10,10 +11,9 @@
  *  - twoSums
  */
 
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 class HashingProblems {
 
@@ -41,9 +41,18 @@ class HashingProblems {
          * returning 0.0/0.0 IS correct (which would return a non-number).
          */
 
-         return 0.0 / 0.0;
-  }
+        int sum = 0;
+        int count = 0;
 
+        for (int key : array) {
+            if (map.containsKey(key)) {
+                sum += map.get(key);
+                count++;
+            }
+        }
+
+        return count > 0 ? (double) sum / count : 0.0;
+  }
 
     /*
      * Method odd()
@@ -62,6 +71,11 @@ class HashingProblems {
        * Hint: Consider iterating over the HashMap using the keySet method.
        */
 
+        for (int key : map.keySet()) {
+            if (key % 2 != 0) {
+                result.add(map.get(key));
+            }
+        }
 
       return result;
   }
@@ -105,12 +119,25 @@ class HashingProblems {
    */
 
   public int twoSums(int[] numbers, int k) {
-
       /*
        * ADD YOUR CODE HERE
        */
 
-      return -1;
+      // Initialize a HashSet and populate it with the array elements
+      HashSet<Integer> numSet = new HashSet<>();
+      for (int num : numbers) {
+          numSet.add(num);
+      }
+
+      int count = 0;
+      // Iterate through the array and check for pairs with difference k
+      for (int num : numbers) {
+          if (numSet.contains(num + k)) {
+              count++;
+          }
+      }
+
+      return count;
   }
 
 } /* end class HashingProblems */
